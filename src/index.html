@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alpinejs</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div>
+        <div x-data="{ count: 1}">
+            <p x-text="count"></p>
+            <button class="py-2 px-6 bg-blue-600 hover: bg-opacity-95 text-white rounded-md shadow" c@click="count++">Count Up</button>
+            <button class="py-2 px-6 bg-blue-600 hover: bg-opacity-95 text-white rounded-md shadow" class="" @click="count--">Count Down</button>
+        </div>
+        <div x-data="{ countdown: 60 }" x-init="setInterval(function(){
+                countdown--;
+             }, 1000);
+             ">
+            <h1 x-text="countdown"></h1>
+        </div>
+        <div x-data="{ show: false }">
+            <button class="py-2 px-6 bg-red-600 hover: bg-opacity-95 text-white rounded-md shadow" @click="show=!show">Show</button>
+            <div x-show.transition="show""">Hello</div>
+        </div>
+
+        <div x-data="{ title: 'AlpineJS is Awesome' }">
+            <p x-text="title"></p>
+            <input type="text" x-model="title">
+        </div>
+
+        <div x-data="{ code: '<p>Dynamic Paragraph</p>' }">
+            <div x-ref="sentence">I am a sentence</div>
+            <button class="py-2 px-6 bg-orange-600 hover: bg-opacity-95 text-white rounded-md shadow" @click="$refs.sentence.innerText = 'I just changed'">Change Sentence</button>
+        </div>
+        <div x-data="{ socks: 'blue' }">
+            <template x-if="socks=='blue'">
+                <p>My socks are blue</p>
+            </template>
+            <template x-if="socks=='green'">
+                <p>My socks are green</p>
+            </template>
+            <button class="py-2 px-6 bg-green-600 hover: bg-opacity-95 text-white rounded-md shadow" @click="socks = 'green'">Change Sox</button>
+        </div>
+        <div x-data="{ groceries: ['Milk', 'Eggs', 'Cheese'] }">
+            <p>Groceries</p>
+            <ul>
+                <template x-for="item in groceries">
+                    <li x-text="item"></li>
+                </template>
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+</body>
+
+</html>
+</body>
+
+</html>
